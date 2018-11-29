@@ -22,11 +22,11 @@ public class HistoryDAO {
 
         while (cursor.moveToNext()) {
             String id = cursor.getString(cursor.getColumnIndex("id"));
-            String candyId = cursor.getString(cursor.getColumnIndex("name"));
-            String date = cursor.getString(cursor.getColumnIndex("description"));
-            String location = cursor.getString(cursor.getColumnIndex("price"));
-            String price = cursor.getString(cursor.getColumnIndex("type"));
-            String paymentMethod = cursor.getString(cursor.getColumnIndex("type"));
+            String candyId = cursor.getString(cursor.getColumnIndex("candyId"));
+            String date = cursor.getString(cursor.getColumnIndex("date"));
+            String location = cursor.getString(cursor.getColumnIndex("location"));
+            String price = cursor.getString(cursor.getColumnIndex("price"));
+            String paymentMethod = cursor.getString(cursor.getColumnIndex("paymentMethod"));
 
             history.add(new History(Integer.parseInt(id), Integer.parseInt(candyId), date, location, price, paymentMethod));
         }
