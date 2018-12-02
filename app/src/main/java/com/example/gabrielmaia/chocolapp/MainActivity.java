@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new HomeFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    selectedFragment = new HomeFragment();
+                    selectedFragment = new CandiesFragment();
                     break;
                 case R.id.navigation_notifications:
                     selectedFragment = new HomeFragment();
