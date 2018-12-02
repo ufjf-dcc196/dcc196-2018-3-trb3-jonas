@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CandiesFragment extends android.support.v4.app.Fragment {
+public class HistoryFragment extends android.support.v4.app.Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
