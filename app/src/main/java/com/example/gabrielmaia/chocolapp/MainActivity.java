@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     selectedFragment = new HomeFragment();
                     break;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_candies:
                     selectedFragment = new CandiesFragment();
                     break;
-                case R.id.navigation_notifications:
-                    selectedFragment = new HomeFragment();
+                case R.id.navigation_history:
+                    selectedFragment = new HistoryFragment();
                     break;
             }
 

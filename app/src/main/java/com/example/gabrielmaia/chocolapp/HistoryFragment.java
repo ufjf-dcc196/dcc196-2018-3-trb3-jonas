@@ -17,7 +17,7 @@ public class HistoryFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.candies_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.history_fragment, container, false);
         return rootView;
     }
 }
