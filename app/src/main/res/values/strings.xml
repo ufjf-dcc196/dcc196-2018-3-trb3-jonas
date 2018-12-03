@@ -4,4 +4,6 @@
     <string name="title_candies">Bombons</string>
     <string name="title_history">Histórico</string>
     <string name="home_revenue">Faturamento</string>
+    <string name="Cash">Dinheiro</string>
+    <string name="Card">Cartão</string>
 </resources>
