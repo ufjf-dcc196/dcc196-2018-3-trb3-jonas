@@ -55,10 +55,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
                 "('Ovomaltine', lorem, '250', 'Bombom')," +
                 "('Brigadeiro', lorem, '250', 'Bombom')," +
-                "('Ninho', lorem, '250', 'Bombom')," +
                 "('Café', lorem, '250', 'Bombom')," +
                 "('Maracujá', lorem, '250', 'Bombom')," +
-                "('Limão', lorem, '250', 'Bombom')," +
                 "('Morango', lorem, '250', 'Bombom')," +
                 "('Coco', lorem, '250', 'Bombom')," +
 
