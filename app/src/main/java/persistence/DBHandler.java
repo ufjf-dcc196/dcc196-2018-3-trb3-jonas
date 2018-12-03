@@ -9,7 +9,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "candies.db";
 
-    private static final String TABLE_CANDIES = "candies";
+    private static final String TABLE_CANDIES = "my_candies";
     private static final String COLUMN_CANDY_ID = "candy_id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_PRICE = "price";
@@ -38,34 +38,24 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL(create_candies_table);
 
-        String lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-                "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-                "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-                "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-                "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-                "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
         db.execSQL("INSERT INTO " + TABLE_CANDIES + "( " +
                 COLUMN_NAME + "," +
                 COLUMN_DESCRIPTION + "," +
                 COLUMN_PRICE + "," +
                 COLUMN_TYPE +
-
                 ") values " +
-
-                "('Ovomaltine', lorem, '250', 'Bombom')," +
-                "('Brigadeiro', lorem, '250', 'Bombom')," +
-                "('Café', lorem, '250', 'Bombom')," +
-                "('Maracujá', lorem, '250', 'Bombom')," +
-                "('Morango', lorem, '250', 'Bombom')," +
-                "('Coco', lorem, '250', 'Bombom')," +
-
-                "('Amendoim', lorem, '100', 'Barrinha')," +
-                "('Coco', lorem, '100', 'Barrinha')," +
-                "('Crocante', lorem, '100', 'Barrinha')," +
-                "('Unicórnio', lorem, '100', 'Barrinha')," +
-                "('Panda', lorem, '100', 'Barrinha')," +
-                "('Marshmallow', lorem, '100', 'Barrinha')"
+                "('Ovomaltine', 'Descricao', '250', 'Bombom')," +
+                "('Brigadeiro', 'Descricao', '250', 'Bombom')," +
+                "('Café', 'Descricao', '250', 'Bombom')," +
+                "('Maracujá', 'Descricao', '250', 'Bombom')," +
+                "('Morango', 'Descricao', '250', 'Bombom')," +
+                "('Coco', 'Descricao', '250', 'Bombom')," +
+                "('Amendoim', 'Descricao', '100', 'Barrinha')," +
+                "('Coco', 'Descricao', '100', 'Barrinha')," +
+                "('Crocante', 'Descricao', '100', 'Barrinha')," +
+                "('Unicórnio', 'Descricao', '100', 'Barrinha')," +
+                "('Panda', 'Descricao', '100', 'Barrinha')," +
+                "('Marshmallow', 'Descricao', '100', 'Barrinha')"
         );
 
         String create_history_table = "CREATE TABLE " + TABLE_HISTORY + "(" +

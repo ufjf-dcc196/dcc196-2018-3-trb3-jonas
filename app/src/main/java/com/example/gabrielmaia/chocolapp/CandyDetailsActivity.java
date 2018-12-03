@@ -1,4 +1,4 @@
 package com.example.gabrielmaia.chocolapp;
 
-class CandyDetailsActivity {
+public class CandyDetailsActivity {
 }

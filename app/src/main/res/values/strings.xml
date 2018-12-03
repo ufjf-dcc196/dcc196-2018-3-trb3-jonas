@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chocolapp</string>
     <string name="title_home">Vendas</string>
-    <string name="title_candies">Bombons</string>
+    <string name="title_candies">Doces</string>
     <string name="title_history">Histórico</string>
     <string name="home_revenue">Faturamento</string>
     <string name="Cash">Dinheiro</string>

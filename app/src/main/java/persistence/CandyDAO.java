@@ -9,24 +9,24 @@ import model.Candy;
 
 public class CandyDAO {
 
-    private static final String TABLE = "candies";
+    private static final String TABLE = "my_candies";
     private static DBGateway gw;
 
     public CandyDAO(Context ctx) {
         gw = DBGateway.getInstance(ctx);
     }
 
-    public static ArrayList<Candy> getAll() {
+    public ArrayList<Candy> getAll() {
         ArrayList<Candy> candies = new ArrayList<>();
 
         Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM " + TABLE, null);
 
         while (cursor.moveToNext()) {
-            String id = cursor.getString(cursor.getColumnIndex("id"));
+            String id = cursor.getString(cursor.getColumnIndex("candy_id"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
-            String description = cursor.getString(cursor.getColumnIndex("description"));
             String price = cursor.getString(cursor.getColumnIndex("price"));
             String type = cursor.getString(cursor.getColumnIndex("type"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
 
             candies.add(new Candy(Integer.parseInt(id), name, description, Integer.parseInt(price), type));
         }
