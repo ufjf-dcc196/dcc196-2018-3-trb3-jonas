@@ -2,6 +2,7 @@ package com.example.gabrielmaia.chocolapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +20,17 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
 
     public static class CandiesViewHolder extends RecyclerView.ViewHolder {
         public TextView candyName;
+        public TextView candyPrice;
+        public TextView candyType;
+        public CardView candyCard;
 
         public CandiesViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            candyName =  itemView.findViewById(R.id.candy_cv);
+            candyName =  itemView.findViewById(R.id.candy_name_cv);
+            candyPrice =  itemView.findViewById(R.id.candy_price_cv);
+            candyType =  itemView.findViewById(R.id.candy_type_cv);
+            candyCard = itemView.findViewById(R.id.candy_card);
         }
     }
 
@@ -42,7 +49,7 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     public void onBindViewHolder(@NonNull final CandiesViewHolder viewHolder, int i) {
         currentCandy = this.candies.get(i);
 
-        viewHolder.candyName.setOnClickListener(new View.OnClickListener() {
+        viewHolder.candyCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = viewHolder.getAdapterPosition();
@@ -53,7 +60,9 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
             }
         });
 
-        viewHolder.candyName.setText(currentCandy.getType() + " de " + currentCandy.getName());
+        viewHolder.candyName.setText(currentCandy.getName());
+        viewHolder.candyType.setText(currentCandy.getType());
+        viewHolder.candyPrice.setText(currentCandy.printPrice());
     }
 
     private String getCandyId(int position) {
