@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        deleteDatabase(DBHandler.DATABASE_NAME);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment,  new HomeFragment()).commit();
     }
 

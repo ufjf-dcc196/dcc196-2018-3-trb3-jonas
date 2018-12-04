@@ -1,5 +1,6 @@
 package persistence;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -24,9 +25,9 @@ public class CandyDAO {
         while (cursor.moveToNext()) {
             String id = cursor.getString(cursor.getColumnIndex("candy_id"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
             String price = cursor.getString(cursor.getColumnIndex("price"));
             String type = cursor.getString(cursor.getColumnIndex("type"));
-            String description = cursor.getString(cursor.getColumnIndex("description"));
 
             candies.add(new Candy(Integer.parseInt(id), name, description, Integer.parseInt(price), type));
         }
@@ -34,6 +35,16 @@ public class CandyDAO {
         cursor.close();
 
         return candies;
+    }
+
+    public static boolean create(Candy candy){
+        ContentValues cv = new ContentValues();
+        cv.put("name", candy.getName());
+        cv.put("description", candy.getDescription());
+        cv.put("price", candy.getPrice());
+        cv.put("type", candy.getType());
+
+        return gw.getDatabase().insert(TABLE, null, cv) > 0;
     }
 
     public static Candy read(int id){
@@ -54,6 +65,19 @@ public class CandyDAO {
         }
 
         return null;
+    }
+
+    public static boolean update(Candy candy) {
+        if (!(candy.getId() > 0))
+            return create(candy);
+
+        ContentValues cv = new ContentValues();
+        cv.put("name", candy.getName());
+        cv.put("description", candy.getDescription());
+        cv.put("price", candy.getPrice());
+        cv.put("type", candy.getType());
+
+        return gw.getDatabase().update(TABLE, cv, "candy_id=?", new String[]{ candy.getId() + "" }) > 0;
     }
 
 }
