@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PaymentMethodActivity"></activity>
+        <activity android:name=".CandyDetailsActivity"></activity>
     </application>
 
 </manifest>

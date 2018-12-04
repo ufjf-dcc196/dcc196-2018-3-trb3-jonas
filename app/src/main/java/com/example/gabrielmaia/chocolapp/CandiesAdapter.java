@@ -39,19 +39,26 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CandiesViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final CandiesViewHolder viewHolder, int i) {
         currentCandy = this.candies.get(i);
 
         viewHolder.candyName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int position = viewHolder.getAdapterPosition();
+
                 Intent intent = new Intent(v.getContext(), CandyDetailsActivity.class);
-                intent.putExtra("ID", currentCandy.getId());
+                intent.putExtra("CANDY_ID", getCandyId(position));
                 v.getContext().startActivity(intent);
             }
         });
 
         viewHolder.candyName.setText(currentCandy.getType() + " de " + currentCandy.getName());
+    }
+
+    private String getCandyId(int position) {
+        Candy candy = this.candies.get(position);
+        return Integer.toString(candy.getId());
     }
 
     @Override

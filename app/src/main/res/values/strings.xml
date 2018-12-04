@@ -6,4 +6,10 @@
     <string name="home_revenue">Faturamento</string>
     <string name="Cash">Dinheiro</string>
     <string name="Card">Cartão</string>
+    <string name="candy_details_title">Detalhes</string>
+    <string name="candy_name_lbl">Nome</string>
+    <string name="candy_type_lbl">Tipo</string>
+    <string name="candy_price">Preço</string>
+    <string name="candy_description">Descrição</string>
+    <string name="save_btn">Salvar</string>
 </resources>

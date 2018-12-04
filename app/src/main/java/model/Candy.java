@@ -43,6 +43,18 @@ public class Candy {
         return price;
     }
 
+    public String printPrice() {
+        Double realPrice = Double.parseDouble(Integer.toString(price));
+        realPrice = realPrice / 100;
+
+        return Double.toString(realPrice);
+    }
+
+    public void setRealPrice(Double realPrice){
+        double newPrice = realPrice * 100;
+        this.price = (int) newPrice;
+    }
+
     public void setPrice(int price) {
         this.price = price;
     }

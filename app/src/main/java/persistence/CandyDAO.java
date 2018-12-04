@@ -38,7 +38,7 @@ public class CandyDAO {
 
     public static Candy read(int id){
         Candy candy;
-        String readById = "SELECT * FROM " + TABLE + " WHERE id =" + id ;
+        String readById = "SELECT * FROM " + TABLE + " WHERE candy_id =" + id ;
 
         Cursor cursor = gw.getDatabase().rawQuery(readById, null);
 
