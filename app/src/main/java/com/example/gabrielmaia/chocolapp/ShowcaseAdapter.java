@@ -1,13 +1,12 @@
 package com.example.gabrielmaia.chocolapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -26,19 +25,23 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
 
     public static class ShowcaseViewHolder extends RecyclerView.ViewHolder {
         public TextView itemName;
-        public Button itemSellBtn;
+        public TextView itemType;
+        public TextView itemQuantity;
+        public CardView showcaseItemCard;
 
         public ShowcaseViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemName =  itemView.findViewById(R.id.item_name);
-            itemSellBtn =  itemView.findViewById(R.id.item_sell_btn);
+            itemType =  itemView.findViewById(R.id.item_type);
+            itemQuantity =  itemView.findViewById(R.id.item_quantity);
+            showcaseItemCard = itemView.findViewById(R.id.showcase_item_card);
         }
     }
     @NonNull
     @Override
     public ShowcaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.showcase_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.showcase_item_cardview, viewGroup, false);
         return new ShowcaseViewHolder(view);
     }
 
@@ -46,7 +49,7 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
     public void onBindViewHolder(@NonNull final ShowcaseViewHolder viewHolder, int i) {
         currentItem = this.showcase.get(i);
 
-        viewHolder.itemSellBtn.setOnClickListener(new View.OnClickListener() {
+        viewHolder.showcaseItemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = viewHolder.getAdapterPosition();
@@ -59,8 +62,9 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
 
         CandyDAO candyDAO = new CandyDAO(viewHolder.itemName.getContext());
         Candy candy = candyDAO.read(currentItem.getCandyId());
-        viewHolder.itemName.setText(candy.getType() +": "+ candy.getName());
-        viewHolder.itemSellBtn.setText(String.valueOf(currentItem.getQuantity()));
+        viewHolder.itemName.setText(candy.getName());
+        viewHolder.itemType.setText(candy.getType());
+        viewHolder.itemQuantity.setText(String.valueOf(currentItem.getQuantity()));
 
     }
 
