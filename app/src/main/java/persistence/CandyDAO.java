@@ -37,7 +37,7 @@ public class CandyDAO {
         return candies;
     }
 
-    public static boolean create(Candy candy){
+    public boolean create(Candy candy){
         ContentValues cv = new ContentValues();
         cv.put("name", candy.getName());
         cv.put("description", candy.getDescription());
@@ -47,7 +47,7 @@ public class CandyDAO {
         return gw.getDatabase().insert(TABLE, null, cv) > 0;
     }
 
-    public static Candy read(int id){
+    public Candy read(int id){
         Candy candy;
         String readById = "SELECT * FROM " + TABLE + " WHERE candy_id =" + id ;
 
@@ -67,7 +67,7 @@ public class CandyDAO {
         return null;
     }
 
-    public static boolean update(Candy candy) {
+    public boolean update(Candy candy) {
         if (!(candy.getId() > 0))
             return create(candy);
 

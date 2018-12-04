@@ -49,6 +49,10 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     public void onBindViewHolder(@NonNull final CandiesViewHolder viewHolder, int i) {
         currentCandy = this.candies.get(i);
 
+        viewHolder.candyName.setText(currentCandy.getName());
+        viewHolder.candyType.setText(currentCandy.getType());
+        viewHolder.candyPrice.setText(currentCandy.printPrice());
+
         viewHolder.candyCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,10 +63,6 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
                 v.getContext().startActivity(intent);
             }
         });
-
-        viewHolder.candyName.setText(currentCandy.getName());
-        viewHolder.candyType.setText(currentCandy.getType());
-        viewHolder.candyPrice.setText(currentCandy.printPrice());
     }
 
     private String getCandyId(int position) {
@@ -73,10 +73,5 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     @Override
     public int getItemCount() {
         return this.candies.size();
-    }
-
-    public void addCandy(Candy event){
-        this.candies.add(event);
-        notifyItemInserted(getItemCount());
     }
 }

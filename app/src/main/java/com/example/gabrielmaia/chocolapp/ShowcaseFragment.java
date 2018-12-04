@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import persistence.CandyDAO;
+import persistence.ShowcaseItemDAO;
 
-public class CandiesFragment extends android.support.v4.app.Fragment {
+public class ShowcaseFragment extends android.support.v4.app.Fragment {
 
     private static RecyclerView recyclerView;
     public static RecyclerView.Adapter adapter;
@@ -25,13 +25,13 @@ public class CandiesFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.candies_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.showcase_fragment, container, false);
 
-        recyclerView = rootView.findViewById(R.id.candies_rv);
+        recyclerView = rootView.findViewById(R.id.showcase_rv);
         layoutManager = new LinearLayoutManager(getContext());
 
-        CandyDAO candyDAO = new CandyDAO(this.getContext());
-        adapter = new CandiesAdapter(candyDAO.getAll());
+        ShowcaseItemDAO showcase = new ShowcaseItemDAO(this.getContext());
+        adapter = new ShowcaseAdapter(showcase.getAll());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

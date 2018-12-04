@@ -22,6 +22,11 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_LOCATION = "location";
     private static final String COLUMN_PAYMENT_METHOD = "payment_method";
 
+    private static final String TABLE_SHOWCASE = "showcase";
+    private static final String COLUMN_SHOWCASE_ID = "showcase_id";
+    private static final String COLUMN_QUANTITY = "quantity";
+
+
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -69,12 +74,29 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL(create_history_table);
 
+        String create_showcase_table = "CREATE TABLE " + TABLE_SHOWCASE + "(" +
+                COLUMN_SHOWCASE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_CANDY_ID + " INTEGER, " +
+                COLUMN_QUANTITY + " INTEGER " +
+                ");";
+
+        db.execSQL(create_showcase_table);
+
+        db.execSQL("INSERT INTO " + TABLE_SHOWCASE + "( " +
+                COLUMN_CANDY_ID + "," +
+                COLUMN_QUANTITY +
+                ") values " +
+                "('1', '20')," +
+                "('2', '1')"
+        );
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CANDIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOWCASE);
         onCreate(db);
     }
 }

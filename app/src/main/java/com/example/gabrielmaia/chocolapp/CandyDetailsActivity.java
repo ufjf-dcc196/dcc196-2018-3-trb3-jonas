@@ -27,7 +27,8 @@ public class CandyDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final String candyId = extras.getString("CANDY_ID");
 
-        final Candy candy = CandyDAO.read(Integer.parseInt(candyId));
+        CandyDAO candyDAO = new CandyDAO(this);
+        final Candy candy = candyDAO.read(Integer.parseInt(candyId));
 
         if(candy != null){
             name = findViewById(R.id.c_edit_name);
@@ -69,7 +70,8 @@ public class CandyDetailsActivity extends AppCompatActivity {
                         candy.setRealPrice(newRealPrice);
                         candy.setDescription(newDescription);
 
-                        CandyDAO.update(candy);
+                        CandyDAO candyDAO = new CandyDAO(v.getContext());
+                        candyDAO.update(candy);
 
                         Toast.makeText(getApplicationContext(), candy.getType() + " de " + candy.getName() + " atualizado!", Toast.LENGTH_SHORT).show();
                     }

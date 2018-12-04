@@ -6,7 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import persistence.DBHandler;
 
@@ -21,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
 
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    selectedFragment = new HomeFragment();
+                case R.id.navigation_showcase:
+                    selectedFragment = new ShowcaseFragment();
                     break;
                 case R.id.navigation_candies:
                     selectedFragment = new CandiesFragment();
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         deleteDatabase(DBHandler.DATABASE_NAME);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment,  new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment,  new ShowcaseFragment()).commit();
     }
 
 }
