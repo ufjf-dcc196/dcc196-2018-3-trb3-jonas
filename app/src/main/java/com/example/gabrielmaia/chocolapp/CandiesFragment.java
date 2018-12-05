@@ -17,6 +17,10 @@ public class CandiesFragment extends android.support.v4.app.Fragment {
     public static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    public static RecyclerView.Adapter getAdapter() {
+        return adapter;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -52,12 +52,6 @@ public class CandyDetailsActivity extends AppCompatActivity {
                     String newPrice = price.getText().toString();
                     String newDescription = description.getText().toString();
 
-                    try{
-                        newRealPrice = Double.parseDouble(newPrice);
-                    } catch (NumberFormatException e){
-                        Toast.makeText(getApplicationContext(), "Insira um preço válido!", Toast.LENGTH_SHORT).show();
-                    }
-
                     if (newName == null || newName.isEmpty())
                         Toast.makeText(getApplicationContext(), "Insira um nome válido!", Toast.LENGTH_SHORT).show();
                     else if (newType == null || newType.isEmpty())
@@ -67,13 +61,14 @@ public class CandyDetailsActivity extends AppCompatActivity {
                     else{
                         candy.setName(newName);
                         candy.setType(newType);
-                        candy.setRealPrice(newRealPrice);
+                        candy.setRealPrice(newPrice);
                         candy.setDescription(newDescription);
 
                         CandyDAO candyDAO = new CandyDAO(v.getContext());
                         candyDAO.update(candy);
-
+                        ((CandiesAdapter) CandiesFragment.getAdapter()).updateCandy(candy);
                         Toast.makeText(getApplicationContext(), candy.getType() + " de " + candy.getName() + " atualizado!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }
             });

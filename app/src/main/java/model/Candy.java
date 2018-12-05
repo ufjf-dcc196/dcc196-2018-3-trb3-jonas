@@ -1,5 +1,8 @@
 package model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Candy {
     private int id;
     private String name;
@@ -47,10 +50,13 @@ public class Candy {
         Double realPrice = Double.parseDouble(Integer.toString(price));
         realPrice = realPrice / 100;
 
-        return Double.toString(realPrice);
+        Locale ptBr = new Locale("pt", "BR");
+        return NumberFormat.getCurrencyInstance(ptBr).format(realPrice);
     }
 
-    public void setRealPrice(Double realPrice){
+    public void setRealPrice(String toFormat){
+        toFormat = toFormat.replaceAll("[^\\d.,]","").replaceAll(",","\\.");
+        double realPrice = Double.parseDouble(toFormat);
         double newPrice = realPrice * 100;
         this.price = (int) newPrice;
     }

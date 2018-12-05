@@ -18,6 +18,21 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     private ArrayList<Candy> candies;
     private Candy currentCandy;
 
+    public void updateCandy(Candy candy) {
+        int position = searchFor(candy);
+        this.candies.set(position, candy);
+        notifyItemChanged(position);
+    }
+
+    private int searchFor(Candy oldCandy) {
+        for (int i = 0; i < this.candies.size(); i++){
+            if(((Candy) candies.toArray()[i]).getId() == (oldCandy.getId()))
+                return i;
+        }
+
+        return -1;
+    }
+
     public static class CandiesViewHolder extends RecyclerView.ViewHolder {
         public TextView candyName;
         public TextView candyPrice;
@@ -74,4 +89,5 @@ public class CandiesAdapter extends RecyclerView.Adapter<CandiesAdapter.CandiesV
     public int getItemCount() {
         return this.candies.size();
     }
+
 }

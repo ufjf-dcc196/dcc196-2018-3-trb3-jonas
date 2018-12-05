@@ -13,7 +13,7 @@
         android:layout_marginStart="108dp"
         android:layout_marginLeft="108dp"
         android:layout_marginTop="16dp"
-        android:text="@string/home_revenue"
+        android:text="@string/home_sells"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
