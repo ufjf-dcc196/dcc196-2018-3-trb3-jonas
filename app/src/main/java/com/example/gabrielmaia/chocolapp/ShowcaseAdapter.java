@@ -1,6 +1,5 @@
 package com.example.gabrielmaia.chocolapp;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import model.Candy;
 import model.ShowcaseItem;
 import persistence.CandyDAO;
+import persistence.ShowcaseItemDAO;
 
 public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.ShowcaseViewHolder> {
 
@@ -53,10 +53,12 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
             @Override
             public void onClick(View v) {
                 int position = viewHolder.getAdapterPosition();
+                ShowcaseItem clicked = getShowcaseItem(position);
 
-                Intent intent = new Intent(v.getContext(), PaymentMethodActivity.class);
-                intent.putExtra("SHOWCASE_ID", getShowcaseItemId(position));
-                v.getContext().startActivity(intent);
+                ShowcaseItemDAO showcaseItemDAO = new ShowcaseItemDAO(v.getContext());
+                clicked.setQuantity(clicked.getQuantity() - 1);
+                showcaseItemDAO.update(clicked);
+                notifyDataSetChanged();
             }
         });
 
@@ -68,9 +70,9 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
 
     }
 
-    private int getShowcaseItemId(int position) {
+    private ShowcaseItem getShowcaseItem(int position) {
         ShowcaseItem s = this.showcase.get(position);
-        return s.getShowcaseItemId();
+        return s;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package persistence;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import java.util.ArrayList;
@@ -32,6 +33,34 @@ public class ShowcaseItemDAO {
         return showcase;
     }
 
-    public static void update(ShowcaseItem showcaseItem) {
+    public ShowcaseItem read(Integer id) {
+        ShowcaseItem showcaseItem;
+
+        String getAllQuery = "SELECT * FROM " + TABLE + " WHERE showcase_id=" + id;
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        if (cursor.moveToFirst()){
+            String quantity = cursor.getString(cursor.getColumnIndex("quantity"));
+            String candyId = cursor.getString(cursor.getColumnIndex("candy_id"));
+            showcaseItem = new ShowcaseItem(id, Integer.parseInt(candyId),Integer.parseInt(quantity));
+
+            cursor.close();
+
+            return showcaseItem;
+        }
+
+        return null;
+
+    }
+
+    public static boolean update(ShowcaseItem showcaseItem) {
+        if ((showcaseItem.getShowcaseItemId() > 0)) {
+            ContentValues cv = new ContentValues();
+            cv.put("quantity", showcaseItem.getQuantity());
+
+            return gw.getDatabase().update(TABLE, cv, "showcase_id=?", new String[]{showcaseItem.getShowcaseItemId() + ""}) > 0;
+        }
+        return false;
     }
 }

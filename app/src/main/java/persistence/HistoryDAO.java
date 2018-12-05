@@ -26,9 +26,8 @@ public class HistoryDAO {
             String date = cursor.getString(cursor.getColumnIndex("date"));
             String location = cursor.getString(cursor.getColumnIndex("location"));
             String price = cursor.getString(cursor.getColumnIndex("price"));
-            String paymentMethod = cursor.getString(cursor.getColumnIndex("paymentMethod"));
 
-            history.add(new History(Integer.parseInt(id), Integer.parseInt(candyId), date, location, price, paymentMethod));
+            history.add(new History(Integer.parseInt(id), Integer.parseInt(candyId), date, location, price));
         }
 
         cursor.close();

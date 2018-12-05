@@ -20,7 +20,6 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_HISTORY_ID = "history_id";
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_LOCATION = "location";
-    private static final String COLUMN_PAYMENT_METHOD = "payment_method";
 
     private static final String TABLE_SHOWCASE = "showcase";
     private static final String COLUMN_SHOWCASE_ID = "showcase_id";
@@ -68,8 +67,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 COLUMN_CANDY_ID + " INTEGER, " +
                 COLUMN_DATE + " TEXT, " +
                 COLUMN_LOCATION + " TEXT, " +
-                COLUMN_PRICE + " INTEGER, " +
-                COLUMN_PAYMENT_METHOD + " TEXT " +
+                COLUMN_PRICE + " INTEGER " +
                 ");";
 
         db.execSQL(create_history_table);

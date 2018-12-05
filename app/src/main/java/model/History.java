@@ -6,15 +6,13 @@ public class History {
     private String date;
     private String location;
     private String price;
-    private String paymentMethod;
 
-    public History(int id, int candyId, String date, String location, String price, String paymentMethod) {
+    public History(int id, int candyId, String date, String location, String price) {
         this.id = id;
         this.candyId = candyId;
         this.date = date;
         this.location = location;
         this.price = price;
-        this.paymentMethod = paymentMethod;
     }
 
     public int getId() {
@@ -55,13 +53,5 @@ public class History {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 }
