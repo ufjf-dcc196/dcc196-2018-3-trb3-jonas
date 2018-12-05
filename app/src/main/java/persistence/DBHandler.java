@@ -19,7 +19,6 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_HISTORY = "history";
     private static final String COLUMN_HISTORY_ID = "history_id";
     private static final String COLUMN_DATE = "date";
-    private static final String COLUMN_LOCATION = "location";
 
     private static final String TABLE_SHOWCASE = "showcase";
     private static final String COLUMN_SHOWCASE_ID = "showcase_id";
@@ -65,8 +64,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String create_history_table = "CREATE TABLE " + TABLE_HISTORY + "(" +
                 COLUMN_HISTORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_CANDY_ID + " INTEGER, " +
+                COLUMN_NAME + " TEXT, " +
+                COLUMN_TYPE + " TEXT, " +
                 COLUMN_DATE + " TEXT, " +
-                COLUMN_LOCATION + " TEXT, " +
                 COLUMN_PRICE + " INTEGER " +
                 ");";
 

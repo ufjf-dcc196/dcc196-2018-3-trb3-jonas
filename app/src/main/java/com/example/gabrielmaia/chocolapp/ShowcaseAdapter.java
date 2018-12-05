@@ -12,8 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import model.Candy;
+import model.History;
 import model.ShowcaseItem;
 import persistence.CandyDAO;
+import persistence.HistoryDAO;
 import persistence.ShowcaseItemDAO;
 
 public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.ShowcaseViewHolder> {
@@ -58,6 +60,13 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
     public void onBindViewHolder(@NonNull final ShowcaseViewHolder viewHolder, int i) {
         currentItem = this.showcase.get(i);
 
+        if(currentItem.getQuantity() == 0){
+            viewHolder.itemQuantity.setVisibility(View.GONE);
+            viewHolder.remaining.setVisibility(View.GONE);
+            viewHolder.done.setVisibility(View.VISIBLE);
+            viewHolder.cardConstraint.setBackgroundColor(viewHolder.done.getResources().getColor(R.color.done));
+        }
+
         viewHolder.showcaseItemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,17 +74,19 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
                 ShowcaseItem clicked = getShowcaseItem(position);
 
                 ShowcaseItemDAO showcaseItemDAO = new ShowcaseItemDAO(v.getContext());
-                if(clicked.getQuantity() > 1){
+
+                if(clicked.getQuantity() >= 1){
                     clicked.setQuantity(clicked.getQuantity() - 1);
                     showcaseItemDAO.update(clicked);
                     notifyDataSetChanged();
+
+                    HistoryDAO historyDAO = new HistoryDAO(v.getContext());
+                    historyDAO.create(clicked.getCandyId(), v.getContext());
+
+                    History last = historyDAO.getLast();
+                    ((HistoryAdapter) HistoryFragment.getAdapter()).addHistory(last);
                 }
-                else {
-                  viewHolder.itemQuantity.setVisibility(View.GONE);
-                  viewHolder.remaining.setVisibility(View.GONE);
-                  viewHolder.done.setVisibility(View.VISIBLE);
-                  viewHolder.cardConstraint.setBackgroundColor(v.getResources().getColor(R.color.done));
-                }
+
             }
         });
 
