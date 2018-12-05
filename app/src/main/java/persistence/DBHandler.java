@@ -24,6 +24,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_SHOWCASE_ID = "showcase_id";
     private static final String COLUMN_QUANTITY = "quantity";
 
+    private static final String TABLE_REVENUE = "revenue";
+    private static final String COLUMN_REVENUE_ID = "revenue_id";
+    private static final String COLUMN_AMOUNT = "amount";
+
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,6 +90,20 @@ public class DBHandler extends SQLiteOpenHelper {
                 ") values " +
                 "('1', '20')," +
                 "('2', '1')"
+        );
+
+        String create_revenue_table = "CREATE TABLE " + TABLE_REVENUE + "(" +
+                COLUMN_REVENUE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_AMOUNT + " INTEGER " +
+                ");";
+
+        db.execSQL(create_revenue_table);
+
+        db.execSQL("INSERT INTO " + TABLE_REVENUE + "( " +
+                COLUMN_REVENUE_ID + "," +
+                COLUMN_AMOUNT +
+                ") values " +
+                "('1', '0')"
         );
 
     }

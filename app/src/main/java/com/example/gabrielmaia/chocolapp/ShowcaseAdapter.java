@@ -13,9 +13,11 @@ import java.util.ArrayList;
 
 import model.Candy;
 import model.History;
+import model.Revenue;
 import model.ShowcaseItem;
 import persistence.CandyDAO;
 import persistence.HistoryDAO;
+import persistence.RevenueDAO;
 import persistence.ShowcaseItemDAO;
 
 public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.ShowcaseViewHolder> {
@@ -43,6 +45,7 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
             itemType =  itemView.findViewById(R.id.item_type);
             itemQuantity =  itemView.findViewById(R.id.item_quantity);
             showcaseItemCard = itemView.findViewById(R.id.showcase_item_card);
+
             done = itemView.findViewById(R.id.done_check);
             remaining = itemView.findViewById(R.id.items_remaining_lbl);
             cardConstraint = itemView.findViewById(R.id.card_constraint);
@@ -78,13 +81,23 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
                 if(clicked.getQuantity() >= 1){
                     clicked.setQuantity(clicked.getQuantity() - 1);
                     showcaseItemDAO.update(clicked);
-                    notifyDataSetChanged();
 
                     HistoryDAO historyDAO = new HistoryDAO(v.getContext());
                     historyDAO.create(clicked.getCandyId(), v.getContext());
 
                     History last = historyDAO.getLast();
                     ((HistoryAdapter) HistoryFragment.getAdapter()).addHistory(last);
+
+                    RevenueDAO revenueDAO = new RevenueDAO(v.getContext());
+                    Revenue revenue = revenueDAO.read();
+
+                    CandyDAO candyDAO = new CandyDAO(v.getContext());
+                    Candy candy = candyDAO.read(clicked.getCandyId());
+                    revenue.setAmount(revenue.getAmount() + candy.getPrice());
+                    revenueDAO.update(revenue);
+
+                    ShowcaseFragment.revenue.setText(revenue.printPrice());
+                    notifyDataSetChanged();
                 }
 
             }

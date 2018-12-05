@@ -8,7 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import model.Revenue;
+import persistence.RevenueDAO;
 import persistence.ShowcaseItemDAO;
 
 public class ShowcaseFragment extends android.support.v4.app.Fragment {
@@ -16,6 +19,7 @@ public class ShowcaseFragment extends android.support.v4.app.Fragment {
     private static RecyclerView recyclerView;
     public static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    public static TextView revenue;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,12 @@ public class ShowcaseFragment extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        revenue = rootView.findViewById(R.id.revenue_textview);
+
+        RevenueDAO revenueDAO = new RevenueDAO(rootView.getContext());
+        Revenue r = revenueDAO.read();
+
+        revenue.setText(r.printPrice());
         return rootView;
     }
 }
