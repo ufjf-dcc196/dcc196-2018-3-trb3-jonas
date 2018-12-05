@@ -29,6 +29,11 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
         this.showcase = showcase;
     }
 
+    public void addShowcaseItem(ShowcaseItem showcaseItem) {
+        this.showcase.add(showcaseItem);
+        notifyItemInserted(getItemCount());
+    }
+
     public static class ShowcaseViewHolder extends RecyclerView.ViewHolder {
         public TextView itemName;
         public TextView itemType;

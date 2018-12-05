@@ -11,6 +11,12 @@ public class ShowcaseItem {
         this.quantity = quantity;
     }
 
+    public ShowcaseItem(int candyId, int quantity) {
+        this.showcaseItemId = showcaseItemId;
+        this.candyId = candyId;
+        this.quantity = quantity;
+    }
+
     public int getShowcaseItemId() {
         return showcaseItemId;
     }

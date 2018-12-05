@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CandyDetailsActivity"></activity>
+        <activity android:name=".AddShowcaseItemActivity"></activity>
     </application>
 
 </manifest>

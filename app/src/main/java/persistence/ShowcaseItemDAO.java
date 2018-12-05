@@ -33,25 +33,12 @@ public class ShowcaseItemDAO {
         return showcase;
     }
 
-    public ShowcaseItem read(Integer id) {
-        ShowcaseItem showcaseItem;
+    public boolean create(ShowcaseItem showcaseItem){
+        ContentValues cv = new ContentValues();
+        cv.put("candy_id", showcaseItem.getCandyId());
+        cv.put("quantity", showcaseItem.getQuantity());
 
-        String getAllQuery = "SELECT * FROM " + TABLE + " WHERE showcase_id=" + id;
-
-        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
-
-        if (cursor.moveToFirst()){
-            String quantity = cursor.getString(cursor.getColumnIndex("quantity"));
-            String candyId = cursor.getString(cursor.getColumnIndex("candy_id"));
-            showcaseItem = new ShowcaseItem(id, Integer.parseInt(candyId),Integer.parseInt(quantity));
-
-            cursor.close();
-
-            return showcaseItem;
-        }
-
-        return null;
-
+        return gw.getDatabase().insert(TABLE, null, cv) > 0;
     }
 
     public static boolean update(ShowcaseItem showcaseItem) {
@@ -62,5 +49,25 @@ public class ShowcaseItemDAO {
             return gw.getDatabase().update(TABLE, cv, "showcase_id=?", new String[]{showcaseItem.getShowcaseItemId() + ""}) > 0;
         }
         return false;
+    }
+
+    public ShowcaseItem getLast() {
+        ShowcaseItem item;
+        String getAllQuery = "SELECT * FROM " + TABLE + " ORDER BY showcase_id DESC";
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        if (cursor.moveToFirst()){
+            int showcaseId = cursor.getInt(cursor.getColumnIndex("showcase_id"));
+            int candyId = cursor.getInt(cursor.getColumnIndex("candy_id"));
+            int quantity  = cursor.getInt(cursor.getColumnIndex("quantity"));
+
+            item = new ShowcaseItem(showcaseId, candyId, quantity);
+            cursor.close();
+
+            return item;
+        }
+
+        return null;
     }
 }

@@ -31,7 +31,7 @@ public class CandyDetailsActivity extends AppCompatActivity {
         final Candy candy = candyDAO.read(Integer.parseInt(candyId));
 
         if(candy != null){
-            name = findViewById(R.id.c_edit_name);
+            name = findViewById(R.id.s_quantity);
             type = findViewById(R.id.c_edit_type);
             price = findViewById(R.id.c_edit_price);
             description = findViewById(R.id.c_edit_description);

@@ -89,7 +89,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 COLUMN_QUANTITY +
                 ") values " +
                 "('1', '20')," +
-                "('2', '1')"
+                "('2', '4')," +
+                "('3', '2')," +
+                "('11', '13')," +
+                "('12', '25')"
         );
 
         String create_revenue_table = "CREATE TABLE " + TABLE_REVENUE + "(" +
