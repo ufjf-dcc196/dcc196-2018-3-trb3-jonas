@@ -1,11 +1,13 @@
 package com.example.gabrielmaia.chocolapp;
 
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -27,7 +29,10 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
         public TextView itemName;
         public TextView itemType;
         public TextView itemQuantity;
+        public TextView remaining;
         public CardView showcaseItemCard;
+        public ImageView done;
+        public ConstraintLayout cardConstraint;
 
         public ShowcaseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -36,6 +41,10 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
             itemType =  itemView.findViewById(R.id.item_type);
             itemQuantity =  itemView.findViewById(R.id.item_quantity);
             showcaseItemCard = itemView.findViewById(R.id.showcase_item_card);
+            done = itemView.findViewById(R.id.done_check);
+            remaining = itemView.findViewById(R.id.items_remaining_lbl);
+            cardConstraint = itemView.findViewById(R.id.card_constraint);
+            done.setVisibility(View.INVISIBLE);
         }
     }
     @NonNull
@@ -56,9 +65,17 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
                 ShowcaseItem clicked = getShowcaseItem(position);
 
                 ShowcaseItemDAO showcaseItemDAO = new ShowcaseItemDAO(v.getContext());
-                clicked.setQuantity(clicked.getQuantity() - 1);
-                showcaseItemDAO.update(clicked);
-                notifyDataSetChanged();
+                if(clicked.getQuantity() > 1){
+                    clicked.setQuantity(clicked.getQuantity() - 1);
+                    showcaseItemDAO.update(clicked);
+                    notifyDataSetChanged();
+                }
+                else {
+                  viewHolder.itemQuantity.setVisibility(View.GONE);
+                  viewHolder.remaining.setVisibility(View.GONE);
+                  viewHolder.done.setVisibility(View.VISIBLE);
+                  viewHolder.cardConstraint.setBackgroundColor(v.getResources().getColor(R.color.done));
+                }
             }
         });
 
@@ -67,7 +84,6 @@ public class ShowcaseAdapter extends RecyclerView.Adapter<ShowcaseAdapter.Showca
         viewHolder.itemName.setText(candy.getName());
         viewHolder.itemType.setText(candy.getType());
         viewHolder.itemQuantity.setText(String.valueOf(currentItem.getQuantity()));
-
     }
 
     private ShowcaseItem getShowcaseItem(int position) {

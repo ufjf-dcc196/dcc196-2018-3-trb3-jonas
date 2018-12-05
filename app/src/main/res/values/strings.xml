@@ -13,4 +13,5 @@
     <string name="candy_description">Descrição</string>
     <string name="save_btn">Salvar</string>
     <string name="remaining">Restantes</string>
+    <string name="done">Feito</string>
 </resources>

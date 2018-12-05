@@ -6,9 +6,11 @@
     android:minHeight="50dp"
     android:layout_margin="5dp"
     android:padding="5dp"
-    android:id="@+id/showcase_item_card">
+    android:id="@+id/showcase_item_card"
+    android:animateLayoutChanges="true">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/card_constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent">
@@ -72,6 +74,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_quantity"/>
+
+        <ImageView
+            android:id="@+id/done_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_check_black_24dp"
+            android:contentDescription="@string/done"/>
 
     </android.support.constraint.ConstraintLayout>
 
