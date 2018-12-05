@@ -10,4 +10,4 @@ Vendedores de bombons universitários.
 ### Requisitos mínimos
 - Controle de vendas do dia
 - Cálculo de faturamento
-- Listagem de ingredientes de cada bombom
+- Histórico de vendas
